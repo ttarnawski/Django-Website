@@ -3,7 +3,7 @@ This repository shows my Django project. It contains a website that role is to f
 
 - users can manually add a new object (book) to the database so then it is possible to add a new instance of this book
 - users can manually add a new object (book instance) to the database (lend a book)
-- users can choose a book instance object to change its field (borrow) so then it is not available to do by other users
+- users can choose a book instance object to change its field (borrow a book) so then it is not available to do the same by other users
 - user authentication for above activities, in order to perform them, the user must sign up and log in
 
 #### started 05.04.2023
