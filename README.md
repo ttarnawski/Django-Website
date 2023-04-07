@@ -1,5 +1,5 @@
 # Django-Website
-This repository shows my Django project. It contains a web that role is to function as a open library, where users can lend their own books and borrow them from other users. It has currently 2 apps, one stands for book and book instance model and second one for user accounts. Project is still in progress.
+This repository shows my Django project. It contains a website that role is to function as a open library, where users can lend their own books and borrow them from other users. It has currently 2 apps, one stands for book and book instance model and second one for user accounts. Project is still in progress.
 
 - users can manually add a new object (book) to the database so then ii is possible to add a new instance of this book
 - users can manually add a new object (book instance) to the database (lend a book)
