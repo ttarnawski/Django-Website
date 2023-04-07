@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Book List</h1>
+
+<ul>
+    {% for book_instance in book_instance_list %}
+        <li><a href="/book/detail/{{book_instance.book.id}}">{{book_instance}}</a></li>
+        <ul>
+            <li>
+                {% if book_instance.availability == 'Y' %}
+                    <a href="/book/update_instance/{{book_instance.id}}">Borrow from {{book_instance.giver}}</a>
+                {% else %}
+                    {% if book_instance.borrower == request.user %}
+                        <a href="/book/update_instance/{{book_instance.id}}">Give back</a>
+                    {% else %}        
+                        Not available for borrowing
+                    {% endif %}
+                {% endif %}
+            </li>
+        </ul>
+    {% endfor %}
+</ul>
+{% endblock %}
