@@ -28,7 +28,7 @@ class BookDetailView(DetailView):
 class BookInstanceCreateView(CreateView):
     model = BookInstance
     template_name = 'book/book_instance_form.html'
-    fields = ['book', 'availability']
+    fields = ['book']
     success_url = reverse_lazy('book:detail_instance', kwargs={'id': '00000000-0000-0000-0000-000000000000'})
     pk_url_kwarg = 'id'
 

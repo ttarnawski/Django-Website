@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,9 +9,9 @@
   <body>
     <nav class="navbar">
       <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <img src="{% static 'my_project/book.png' %}" alt="My Website">
-        </a>
+        <div class="navbar-item">
+          <img src="{% static 'my_project/book.png' %}" alt="logo">
+        </div>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -46,6 +47,9 @@
         </div>
       </div>
     </nav>
-    <main>{% block content %} {% endblock %}</main>
+    <main>
+      {% block content %} 
+      {% endblock %}
+    </main>
   </body>
 </html>

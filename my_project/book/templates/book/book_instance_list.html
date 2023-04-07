@@ -1,23 +1,74 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Book List</h1>
-
-<ul>
-    {% for book_instance in book_instance_list %}
-        <li><a href="/book/detail/{{book_instance.book.id}}">{{book_instance}}</a></li>
-        <ul>
-            <li>
-                {% if book_instance.availability == 'Y' %}
-                    <a href="/book/update_instance/{{book_instance.id}}">Borrow from {{book_instance.giver}}</a>
-                {% else %}
-                    {% if book_instance.borrower == request.user %}
-                        <a href="/book/update_instance/{{book_instance.id}}">Give back</a>
-                    {% else %}        
-                        Not available for borrowing
-                    {% endif %}
-                {% endif %}
-            </li>
-        </ul>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <style>
+        .book-list {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+    
+        .book-card {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+    
+        .book-card h2 {
+          margin: 0;
+        }
+    
+        .book-card ul {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+    
+        .book-card ul li {
+          margin: 10px 0;
+        }
+    
+        .book-card ul li a {
+          color: #007bff;
+          text-decoration: none;
+        }
+    
+        .book-card p {
+          margin: 0;
+        }
+      </style>
+    </head>
+    <body>
+        <ul class="book-list">
+            {% for book_instance in book_instance_list %}
+              <li>
+                <article class="book-card">
+                  <h2><a href="/book/detail/{{book_instance.book.id}}">{{ book_instance }}</a></h2>
+                  <ul>
+                    <li>
+                        {% if book_instance.availability == 'Y' %}
+                            {% if user.is_authenticated %}
+                                <a href="/book/update_instance/{{book_instance.id}}">Borrow from {{ book_instance.giver }}</a>
+                            {% else %}
+                                <a href="{% url 'login' %}"><p>Log in to borrow</p></a>
+                            {% endif %}
+                        {% else %}
+                        {% if book_instance.borrower == request.user %}
+                            <a href="/book/update_instance/{{book_instance.id}}">Give back</a>
+                        {% else %}        
+                            <p>Not available for borrowing</p>
+                        {% endif %}
+                        {% endif %}
+                    </li>
+                  </ul>
+                </article>
+              </li>
+            {% endfor %}
+          </ul>
+    </body>
 {% endblock %}

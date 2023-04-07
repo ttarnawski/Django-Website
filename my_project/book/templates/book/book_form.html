@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +12,11 @@
       }
 
       h1 {
+        text-align: center;
+        color: #333;
+      }
+      
+      p {
         text-align: center;
         color: #333;
       }
@@ -65,44 +69,15 @@
     </style>
   </head>
   <body>
-    <h1>Create New Book</h1>
-    <form method="POST" action="{% url 'book:create' %}">
-      {% csrf_token %}
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      <br>
-      <label for="author">Author:</label>
-      <input type="text" id="author" name="author">
-      <br>
-      <label for="genre">Genre:</label>
-      <select id="genre" name="genre" required>
-        <option value="" disabled selected>Choose a genre</option>
-        <option value="FA">Fantasy</option>
-        <option value="AD">Adventure</option>
-        <option value="RO">Romance</option>
-        <option value="CO">Contemporary</option>
-        <option value="DY">Dystopian</option>
-        <option value="MY">Mystery</option>
-        <option value="HO">Horror</option>
-        <option value="TH">Thriller</option>
-        <option value="PA">Paranormal</option>
-        <option value="HF">Historical Fiction</option>
-        <option value="SF">Science Fiction</option>
-        <option value="CH">Children's</option>
-        <option value="OT">Other</option>
-      </select>
-      <br>
-      <label for="language">Language:</label>
-      <input type="text" id="language" name="language">
-      <br>
-      <label for="description">Description:</label>
-      <textarea id="description" name="description" required></textarea>
-      <br>
-      <label for="isbn">ISBN:</label>
-      <input type="text" id="isbn" name="isbn" required>
-      <br>
-      <button type="submit">Create Book</button>
-    </form>
+    {% if user.is_authenticated %}
+      <h1>Add New Book</h1>
+      <form method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit">Confirm</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}"><p>Log in to see full content</p></a>
+    {% endif %}
   </body>
-</html>>
+</html>
 {% endblock %}

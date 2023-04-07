@@ -26,7 +26,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=25, choices=GENRE_CHOICES, null=True)
     language = models.CharField(max_length=25, null=True)
     description = models.TextField(max_length=200)
-    isbn = models.PositiveBigIntegerField(max_length=13, unique=True, validators=[MaxValueValidator(9999999999999)])
+    isbn = models.PositiveBigIntegerField(unique=True, validators=[MaxValueValidator(9999999999999), MinValueValidator(1000000000000)])
 
     class Meta:
         ordering = ['name']
